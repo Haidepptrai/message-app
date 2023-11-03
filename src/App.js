@@ -1,22 +1,31 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import MessageBox from './MessageBox';
 
 function App() {
+  const [message, setMessage] = useState([])
+  const addMessage = (name, newMessage) => {
+    setMessage([...message, { name, message: newMessage }]);
+  };
+  const user = [
+    {
+      name: "Hai Nguyen",
+      age: 20
+    },
+    {
+      name: "Girl I loved",
+      age: null
+    }
+  ]
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <title>Message App</title>
+        <h6>Message App</h6>
+        <div className='message-container'>
+          <MessageBox user={user} addMessage={addMessage} messageHistory={message} />
+        </div>
       </header>
     </div>
   );
